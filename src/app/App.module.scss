@@ -1,10 +1,10 @@
 .app {
   max-width: 960px;
   min-width: 320px;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   background-color: rgba(209, 201, 201, 0.362);
-  overflow: hidden;
+
   margin: 0 auto;
   padding: 20px;
 }
