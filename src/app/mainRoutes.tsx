@@ -12,7 +12,7 @@ const MainRoutes = createBrowserRouter([
     element: (
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<h1>Работа с сотрудниками </h1>} />
+          <Route index element={<Navigate to="/employee/" />} />
           <Route path="/employee" element={<EmployeeListPage />} />
           <Route path="/employee/edit/:id" element={<EmployeeEditPage />} />
           <Route path="employee/new" element={<EmployeeCreatePage />} />
