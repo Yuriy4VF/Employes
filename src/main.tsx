@@ -1,13 +1,13 @@
 import ReactDOM from "react-dom/client";
+import "normalize.css";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import { RouterProvider } from "react-router-dom";
+import MainRoutes from "./app/mainRoutes";
+
 import store from "./app/store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={MainRoutes} />
   </Provider>
 );
