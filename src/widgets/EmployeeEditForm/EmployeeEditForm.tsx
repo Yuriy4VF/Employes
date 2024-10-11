@@ -25,12 +25,9 @@ const MaskedTextField = ({ mask, control, name, label }) => (
       <TextField
         {...rest}
         label={label}
-        inputRef={ref}
-        InputProps={{
-          inputComponent: MaskedInput,
-          inputProps: {
-            mask,
-          },
+        inputRef={(inputRef) => {
+          ref(inputRef); // Forward the ref prop to the MaskedInput component
+          return <MaskedInput ref={inputRef} mask={mask} />;
         }}
         fullWidth
         margin="normal"
