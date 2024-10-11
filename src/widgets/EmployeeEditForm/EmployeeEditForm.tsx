@@ -70,6 +70,10 @@ const EmployeeEditForm = ({ edit, initialData }) => {
     console.log("Updated Employee Data:", data);
   };
 
+  let title = edit
+    ? "Редактирование данных сотрудника"
+    : "Создание данных сотрудника";
+
   return (
     <Box
       component="form"
@@ -77,7 +81,7 @@ const EmployeeEditForm = ({ edit, initialData }) => {
       className={styles.editForm}
     >
       <Typography variant="h6" gutterBottom>
-        Редактирование сотрудника
+        {title}
       </Typography>
 
       <Controller
