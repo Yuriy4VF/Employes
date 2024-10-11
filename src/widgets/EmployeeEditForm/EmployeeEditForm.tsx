@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   TextField,
   Select,
@@ -17,11 +16,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./EmployeeEditForm.module.scss";
 
-const MaskedTextField = ({ mask, control, name, label, defaultValue }) => (
+const MaskedTextField = ({ mask, control, name, label }) => (
   <Controller
     name={name}
     control={control}
-    defaultValue={defaultValue}
     render={({ field: { ref, ...rest } }) => (
       <TextField
         {...rest}
@@ -32,7 +30,7 @@ const MaskedTextField = ({ mask, control, name, label, defaultValue }) => (
             <MaskedInput
               ref={inputRef}
               mask={mask}
-              value={defaultValue}
+              value={rest.value}
               onChange={(e) => rest.onChange(e.target.value)}
             />
           );
@@ -54,28 +52,16 @@ const validationSchema = yup.object().shape({
 const EmployeeEditForm = () => {
   const { control, handleSubmit, setValue } = useForm({
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: "Илья Емельянов",
+      isArchive: false,
+      role: "driver",
+      phone: "+7 (883) 508-3269",
+      birthday: "12.02.1982",
+    },
   });
-
-  const [employee, setEmployee] = useState({
-    id: 1,
-    name: "Илья Емельянов",
-    isArchive: false,
-    role: "driver",
-    phone: "+7 (883) 508-3269",
-    birthday: "12.02.1982",
-  });
-
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    setEmployee((prevEmployee) => ({
-      ...prevEmployee,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-    setValue(name, value);
-  };
 
   const onSubmit = (data) => {
-    setEmployee((prev) => ({ ...prev, ...data }));
     console.log("Updated Employee Data:", data);
   };
 
@@ -92,7 +78,6 @@ const EmployeeEditForm = () => {
       <Controller
         name="name"
         control={control}
-        defaultValue={employee.name}
         render={({ field }) => (
           <TextField
             {...field}
@@ -127,7 +112,6 @@ const EmployeeEditForm = () => {
           /\d/,
           /\d/,
         ]}
-        defaultValue={employee.phone}
       />
 
       <MaskedTextField
@@ -135,7 +119,6 @@ const EmployeeEditForm = () => {
         name="birthday"
         label="Дата рождения"
         mask={[/\d/, /\d/, ".", /\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
-        defaultValue={employee.birthday}
       />
 
       <FormControl fullWidth margin="normal">
@@ -143,7 +126,6 @@ const EmployeeEditForm = () => {
         <Controller
           name="role"
           control={control}
-          defaultValue={employee.role}
           render={({ field }) => (
             <Select {...field} labelId="role-label">
               <MenuItem value="all">Все</MenuItem>
@@ -163,10 +145,7 @@ const EmployeeEditForm = () => {
             render={({ field }) => (
               <Checkbox
                 checked={field.value}
-                onChange={(e) => {
-                  field.onChange(e.target.checked);
-                  handleChange(e);
-                }}
+                onChange={(e) => field.onChange(e.target.checked)}
               />
             )}
           />
