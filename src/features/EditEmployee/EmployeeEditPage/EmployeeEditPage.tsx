@@ -1,4 +1,4 @@
-import EmployeeEditForm from "../../widgets/EmployeeEditForm";
+import { EmployeeEditForm } from "../../../widgets";
 import styles from "./EmployeeEditPage.module.scss";
 
 const employee = {
@@ -10,7 +10,7 @@ const employee = {
   birthday: "12.02.1982",
 };
 
-const EmployeeEditPage = () => {
+export const EmployeeEditPage = () => {
   const saveHandler = (data) => console.log(data);
 
   return (
@@ -23,5 +23,3 @@ const EmployeeEditPage = () => {
     </div>
   );
 };
-
-export default EmployeeEditPage;

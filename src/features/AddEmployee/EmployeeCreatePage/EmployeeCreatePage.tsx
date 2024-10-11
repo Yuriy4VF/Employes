@@ -1,5 +1,6 @@
 import styles from "./EmployeeCreatePage.module.scss";
-import EmployeeEditForm from "../../widgets/EmployeeEditForm";
+
+import { EmployeeEditForm } from "../../../widgets";
 
 const EmployeeCreatePage = () => {
   const saveHandler = (data) => console.log(data);

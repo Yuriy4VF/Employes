@@ -55,7 +55,7 @@ const validationSchema = yup.object().shape({
   role: yup.string().required("Это обязательное поле"),
 });
 
-const EmployeeEditForm = ({ edit, initialData }) => {
+export const EmployeeEditForm = ({ edit, initialData, onSubmit }) => {
   const {
     control,
     handleSubmit,
@@ -65,10 +65,6 @@ const EmployeeEditForm = ({ edit, initialData }) => {
     resolver: yupResolver(validationSchema),
     defaultValues: initialData,
   });
-
-  const onSubmit = (data) => {
-    console.log("Updated Employee Data:", data);
-  };
 
   let title = edit
     ? "Редактирование данных сотрудника"
@@ -179,5 +175,3 @@ const EmployeeEditForm = ({ edit, initialData }) => {
     </Box>
   );
 };
-
-export default EmployeeEditForm;

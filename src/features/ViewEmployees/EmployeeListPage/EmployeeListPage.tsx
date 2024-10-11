@@ -2,9 +2,8 @@ import styles from "./EmployeeListPage.module.scss";
 
 import { useState } from "react";
 
-import EmployeeSearchFilter from "../../widgets/EmployeeSearchFilter";
-import EmployeeList from "../../widgets/EmployeeList";
-import { employes as employesList } from "../../mockData/employes";
+import { EmployeeList, EmployeeSearchFilter } from "../widgets";
+import { employes as employesList } from "../../../mockData/employes";
 
 const EmployeeListPage = () => {
   const [employes, setEmployes] = useState([...employesList]);

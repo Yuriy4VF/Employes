@@ -1,4 +1,4 @@
-import { Employee } from "../mockData/employes";
+import { Employee } from "../../../mockData/employes";
 
 export interface EmployeeListProps {
   employes: Employee[];

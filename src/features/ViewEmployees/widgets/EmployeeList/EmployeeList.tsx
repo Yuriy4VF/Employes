@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { EmployeeListProps } from "../../types/EmployeeList.type";
 
-const EmployeeList: FC<EmployeeListProps> = ({
+export const EmployeeList: FC<EmployeeListProps> = ({
   employes,
   onToggleArchive,
   onSelectEmployee,
@@ -51,5 +51,3 @@ const EmployeeList: FC<EmployeeListProps> = ({
     </Paper>
   );
 };
-
-export default EmployeeList;
