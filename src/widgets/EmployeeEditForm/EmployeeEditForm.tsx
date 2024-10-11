@@ -111,6 +111,7 @@ const EmployeeEditForm = () => {
           "-",
           /\d/,
           /\d/,
+          { fixed: true, maxLength: 15 }, // limit to 15 characters
         ]}
       />
 
@@ -118,7 +119,20 @@ const EmployeeEditForm = () => {
         control={control}
         name="birthday"
         label="Дата рождения"
-        mask={[/\d/, /\d/, ".", /\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
+        mask={[
+          /\d/, // day (max 2 digits)
+          /\d/,
+          ".",
+          /\d/, // month (max 2 digits)
+          /\d/,
+          ".",
+          /\d/, // year (max 4 digits)
+          /\d/,
+          /\d/,
+          /\d/,
+          /\d/,
+          { fixed: true, maxLength: 10 }, // limit to 10 characters
+        ]}
       />
 
       <FormControl fullWidth margin="normal">
