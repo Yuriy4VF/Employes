@@ -20,25 +20,22 @@ const MaskedTextField = ({ mask, control, name, label, error, helperText }) => (
   <Controller
     name={name}
     control={control}
-    render={({ field: { ref, ...rest } }) => (
-      <TextField
-        {...rest}
-        label={label}
-        error={error}
-        helperText={helperText}
-        inputRef={(inputRef) => {
-          ref(inputRef);
-          return (
-            <MaskedInput
-              ref={inputRef}
-              mask={mask}
-              value={rest.value}
-              onChange={(e) => rest.onChange(e.target.value)}
-            />
-          );
-        }}
-        fullWidth
-        margin="normal"
+    render={({ field: { onChange, onBlur, value, ref } }) => (
+      <MaskedInput
+        mask={mask}
+        value={value}
+        onChange={onChange}
+        render={(ref, props) => (
+          <TextField
+            {...props}
+            inputRef={ref}
+            label={label}
+            error={error}
+            helperText={helperText}
+            fullWidth
+            margin="normal"
+          />
+        )}
       />
     )}
   />
