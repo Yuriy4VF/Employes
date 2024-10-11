@@ -146,6 +146,7 @@ const EmployeeEditForm = () => {
           defaultValue={employee.role}
           render={({ field }) => (
             <Select {...field} labelId="role-label">
+              <MenuItem value="all">Все</MenuItem>
               <MenuItem value="cook">Повар</MenuItem>
               <MenuItem value="waiter">Официант</MenuItem>
               <MenuItem value="driver">Водитель</MenuItem>
