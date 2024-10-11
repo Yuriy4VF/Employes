@@ -25,17 +25,20 @@ const MaskedTextField = ({ mask, control, name, label, error, helperText }) => (
         mask={mask}
         value={value}
         onChange={onChange}
-        render={(ref, props) => (
-          <TextField
-            {...props}
-            inputRef={ref}
-            label={label}
-            error={error}
-            helperText={helperText}
-            fullWidth
-            margin="normal"
-          />
-        )}
+        render={(ref, props) => {
+          console.log(props);
+          return (
+            <TextField
+              {...props}
+              inputRef={ref}
+              label={label}
+              error={error}
+              helperText={helperText}
+              fullWidth
+              margin="normal"
+            />
+          );
+        }}
       />
     )}
   />
@@ -52,7 +55,7 @@ const validationSchema = yup.object().shape({
   role: yup.string().required("Это обязательное поле"),
 });
 
-const EmployeeEditForm = () => {
+const EmployeeEditForm = ({ edit, initialData }) => {
   const {
     control,
     handleSubmit,
@@ -60,13 +63,7 @@ const EmployeeEditForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: {
-      name: "Илья Емельянов",
-      isArchive: true,
-      role: "driver",
-      phone: "+7 (883) 508-3269",
-      birthday: "12.02.1982",
-    },
+    defaultValues: initialData,
   });
 
   const onSubmit = (data) => {
