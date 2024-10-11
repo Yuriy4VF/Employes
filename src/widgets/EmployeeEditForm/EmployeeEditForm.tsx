@@ -105,7 +105,7 @@ const EmployeeEditForm = ({ edit, initialData }) => {
         label="Телефон"
         mask={[
           "+",
-          "7",
+          /[0-9]/,
           " ",
           "(",
           /[0-9]/,
