@@ -10,6 +10,8 @@ import {
   Box,
   Typography,
 } from "@mui/material";
+
+import { ControlledTextField } from "../../shared/ui/inputs/controlled";
 import MaskedInput from "react-text-mask";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -59,7 +61,6 @@ export const EmployeeEditForm = ({ edit, initialData, onSubmit }) => {
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -80,19 +81,12 @@ export const EmployeeEditForm = ({ edit, initialData, onSubmit }) => {
         {title}
       </Typography>
 
-      <Controller
-        name="name"
+      <ControlledTextField
         control={control}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            label="Имя сотрудника"
-            error={!!errors.name}
-            helperText={errors.name ? errors.name.message : ""}
-            fullWidth
-            margin="normal"
-          />
-        )}
+        name="name"
+        label="Имя сотрудника"
+        error={errors.name}
+        helperText={errors.name ? errors.name.message : ""}
       />
 
       <MaskedTextField
