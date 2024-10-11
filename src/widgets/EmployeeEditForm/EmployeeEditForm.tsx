@@ -16,7 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./EmployeeEditForm.module.scss";
 
-const MaskedTextField = ({ mask, control, name, label }) => (
+const MaskedTextField = ({ mask, control, name, label, error, helperText }) => (
   <Controller
     name={name}
     control={control}
@@ -24,6 +24,8 @@ const MaskedTextField = ({ mask, control, name, label }) => (
       <TextField
         {...rest}
         label={label}
+        error={error}
+        helperText={helperText}
         inputRef={(inputRef) => {
           ref(inputRef);
           return (
@@ -50,7 +52,12 @@ const validationSchema = yup.object().shape({
 });
 
 const EmployeeEditForm = () => {
-  const { control, handleSubmit, setValue } = useForm({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       name: "Илья Емельянов",
@@ -82,6 +89,8 @@ const EmployeeEditForm = () => {
           <TextField
             {...field}
             label="Имя сотрудника"
+            error={!!errors.name}
+            helperText={errors.name ? errors.name.message : ""}
             fullWidth
             margin="normal"
           />
@@ -111,8 +120,10 @@ const EmployeeEditForm = () => {
           "-",
           /\d/,
           /\d/,
-          { fixed: true, maxLength: 15 }, // limit to 15 characters
+          { fixed: true, maxLength: 15 },
         ]}
+        error={!!errors.phone}
+        helperText={errors.phone ? errors.phone.message : ""}
       />
 
       <MaskedTextField
@@ -120,19 +131,20 @@ const EmployeeEditForm = () => {
         name="birthday"
         label="Дата рождения"
         mask={[
-          /\d/, // day (max 2 digits)
+          /\d/,
           /\d/,
           ".",
-          /\d/, // month (max 2 digits)
+          /\d/,
           /\d/,
           ".",
-          /\d/, // year (max 4 digits)
           /\d/,
           /\d/,
           /\d/,
           /\d/,
-          { fixed: true, maxLength: 10 }, // limit to 10 characters
+          { fixed: true, maxLength: 10 },
         ]}
+        error={!!errors.birthday}
+        helperText={errors.birthday ? errors.birthday.message : ""}
       />
 
       <FormControl fullWidth margin="normal">
@@ -141,7 +153,7 @@ const EmployeeEditForm = () => {
           name="role"
           control={control}
           render={({ field }) => (
-            <Select {...field} labelId="role-label">
+            <Select {...field} labelId="role-label" error={!!errors.role}>
               <MenuItem value="all">Все</MenuItem>
               <MenuItem value="cook">Повар</MenuItem>
               <MenuItem value="waiter">Официант</MenuItem>
@@ -149,6 +161,11 @@ const EmployeeEditForm = () => {
             </Select>
           )}
         />
+        {errors.role && (
+          <Typography color="error" variant="caption">
+            {errors.role.message}
+          </Typography>
+        )}
       </FormControl>
 
       <FormControlLabel
