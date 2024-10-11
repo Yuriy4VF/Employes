@@ -17,17 +17,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./EmployeeEditForm.module.scss";
 
-const MaskedTextField = ({ mask, control, name, label }) => (
+const MaskedTextField = ({ mask, control, name, label, defaultValue }) => (
   <Controller
     name={name}
     control={control}
+    defaultValue={defaultValue}
     render={({ field: { ref, ...rest } }) => (
       <TextField
         {...rest}
         label={label}
         inputRef={(inputRef) => {
-          ref(inputRef); // Forward the ref prop to the MaskedInput component
-          return <MaskedInput ref={inputRef} mask={mask} />;
+          ref(inputRef);
+          return (
+            <MaskedInput
+              ref={inputRef}
+              mask={mask}
+              value={defaultValue}
+              onChange={(e) => rest.onChange(e.target.value)}
+            />
+          );
         }}
         fullWidth
         margin="normal"
@@ -119,6 +127,7 @@ const EmployeeEditForm = () => {
           /\d/,
           /\d/,
         ]}
+        defaultValue={employee.phone}
       />
 
       <MaskedTextField
@@ -126,6 +135,7 @@ const EmployeeEditForm = () => {
         name="birthday"
         label="Дата рождения"
         mask={[/\d/, /\d/, ".", /\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
+        defaultValue={employee.birthday}
       />
 
       <FormControl fullWidth margin="normal">
