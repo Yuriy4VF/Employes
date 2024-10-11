@@ -122,7 +122,6 @@ const EmployeeEditForm = ({ edit, initialData }) => {
           "-",
           /\d/,
           /\d/,
-          { fixed: true, maxLength: 15 },
         ]}
         error={!!errors.phone}
         helperText={errors.phone ? errors.phone.message : ""}
@@ -132,19 +131,7 @@ const EmployeeEditForm = ({ edit, initialData }) => {
         control={control}
         name="birthday"
         label="Дата рождения"
-        mask={[
-          /\d/,
-          /\d/,
-          ".",
-          /\d/,
-          /\d/,
-          ".",
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          { fixed: true, maxLength: 10 },
-        ]}
+        mask={[/\d/, /\d/, ".", /\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
         error={!!errors.birthday}
         helperText={errors.birthday ? errors.birthday.message : ""}
       />
