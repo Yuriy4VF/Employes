@@ -4,7 +4,7 @@ import styles from "./EmployeeEditPage.module.scss";
 const employee = {
   id: 1,
   name: "Илья Емельянов",
-  isArchive: false,
+  isArchive: true,
   role: "driver",
   phone: "+7 (883) 508-3269",
   birthday: "12.02.1982",

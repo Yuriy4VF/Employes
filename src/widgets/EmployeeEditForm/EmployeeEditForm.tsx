@@ -54,7 +54,7 @@ const EmployeeEditForm = () => {
     resolver: yupResolver(validationSchema),
     defaultValues: {
       name: "Илья Емельянов",
-      isArchive: false,
+      isArchive: true,
       role: "driver",
       phone: "+7 (883) 508-3269",
       birthday: "12.02.1982",
