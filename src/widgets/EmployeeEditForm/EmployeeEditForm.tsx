@@ -45,7 +45,11 @@ const MaskedTextField = ({ mask, control, name, label, error, helperText }) => (
 );
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required("Это обязательное поле"),
+  name: yup
+    .string()
+    .max(15, "Максимальная длина имени 15 символов")
+    .min(3, "Минимальная длина имени 3 символа!")
+    .required("Это обязательное поле"),
   phone: yup.string().required("Это обязательное поле"),
   birthday: yup.string().required("Это обязательное поле"),
   role: yup.string().required("Это обязательное поле"),
