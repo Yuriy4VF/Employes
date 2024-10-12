@@ -1,4 +1,9 @@
 import styles from "./EmployeeEditForm.module.scss";
+
+import { FC } from "react";
+import type { EmployeeEditFormProps } from "./EmployeeEditForm.type";
+import { EmployeeFormData } from "./EmployeeEditForm.type";
+
 import { Box, Typography } from "@mui/material";
 
 import { SimpleButton } from "../../shared/ui";
@@ -17,17 +22,24 @@ import { DATE_MASK, PHONE_MASK } from "../../shared/constants/fieldPatterns";
 
 import { employeeEditSchema } from "../../shared/formSchemes/formSchemes";
 
-export const EmployeeEditForm = ({ edit, initialData, onSubmit }) => {
+export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
+  edit,
+  initialData,
+  onSubmit,
+}) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<EmployeeFormData>({
     resolver: yupResolver(employeeEditSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      ...initialData,
+      isArchive: initialData?.isArchive ?? false,
+    },
   });
 
-  let title = edit
+  const title = edit
     ? "Редактирование данных сотрудника"
     : "Создание данных сотрудника";
 

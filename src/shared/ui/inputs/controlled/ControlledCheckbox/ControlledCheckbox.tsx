@@ -1,7 +1,17 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
-import { Controller } from "react-hook-form";
+import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
-export const ControlledCheckbox = ({ control, name, label }) => (
+interface ControlledCheckboxProps<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: Path<TFieldValues>;
+  label: string;
+}
+
+export const ControlledCheckbox = <TFieldValues extends FieldValues>({
+  control,
+  name,
+  label,
+}: ControlledCheckboxProps<TFieldValues>) => (
   <FormControlLabel
     control={
       <Controller
@@ -9,7 +19,7 @@ export const ControlledCheckbox = ({ control, name, label }) => (
         control={control}
         render={({ field }) => (
           <Checkbox
-            checked={field.value}
+            checked={!!field.value}
             onChange={(e) => field.onChange(e.target.checked)}
           />
         )}

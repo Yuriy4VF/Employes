@@ -1,6 +1,8 @@
 import { EmployeeEditForm } from "../../../widgets";
 import styles from "./EmployeeEditPage.module.scss";
 
+import { EmployeeFormData } from "../../../widgets/EmployeeEditForm/EmployeeEditForm.type";
+
 const employee = {
   id: 1,
   name: "Илья Емельянов",
@@ -11,7 +13,8 @@ const employee = {
 };
 
 export const EmployeeEditPage = () => {
-  const saveHandler = (data) => console.log(data);
+  const saveHandler: (data: EmployeeFormData) => void = (data) =>
+    console.log(data);
 
   return (
     <div className={styles.editPage}>

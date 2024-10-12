@@ -8,5 +8,6 @@ export const employeeEditSchema = yup.object().shape({
     .required("Это обязательное поле"),
   phone: yup.string().required("Это обязательное поле"),
   birthday: yup.string().required("Это обязательное поле"),
-  role: yup.string().required("Это обязательное поле"),
+  role: yup.string().required("Должность обязательна"),
+  isArchive: yup.boolean().required(),
 });

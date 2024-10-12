@@ -1,6 +1,12 @@
 import { Button } from "@mui/material";
 
-export const SimpleButton = ({
+import { FC } from "react";
+import { ButtonProps } from "@mui/material";
+interface SimpleButtonProps extends ButtonProps {
+  controlWidth?: boolean;
+}
+
+export const SimpleButton: FC<SimpleButtonProps> = ({
   type = "button",
   variant = "contained",
   color = "primary",
