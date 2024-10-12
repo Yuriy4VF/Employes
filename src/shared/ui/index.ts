@@ -1,4 +1,4 @@
 import { PageSuspense } from "./PageSuspense/PageSuspense";
-import { Button } from "./buttons/Button/Button";
+import { SimpleButton } from "./buttons/Button/Button";
 
-export { PageSuspense, Button };
+export { PageSuspense, SimpleButton };

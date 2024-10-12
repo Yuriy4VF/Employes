@@ -1,7 +1,7 @@
 import styles from "./EmployeeEditForm.module.scss";
 import { Box, Typography } from "@mui/material";
 
-import { Button } from "../../shared/ui";
+import { SimpleButton } from "../../shared/ui";
 
 import {
   ControlledTextField,
@@ -83,9 +83,9 @@ export const EmployeeEditForm = ({ edit, initialData, onSubmit }) => {
 
       <ControlledCheckbox control={control} name="isArchive" label="В архиве" />
 
-      <Button type="submit" fullWidth controlWidth>
+      <SimpleButton type="submit" fullWidth controlWidth>
         Сохранить
-      </Button>
+      </SimpleButton>
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 
-export const Button = ({
+export const SimpleButton = ({
   type = "button",
   variant = "contained",
   color = "primary",
