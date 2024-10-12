@@ -17,7 +17,7 @@ const EmployeeCreatePage = () => {
   };
 
   return (
-    <div className={styles.editPage}>
+    <div className={styles.createPage}>
       <EmployeeEditForm
         edit={false}
         onSubmit={saveHandler}
