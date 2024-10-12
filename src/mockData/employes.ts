@@ -1,8 +1,15 @@
+export const enum EmployeeRoles {
+  DRIVER = "driver",
+  WAITER = "waiter",
+  COOK = "cook",
+  NO_ROLE = "no",
+}
+
 export type Employee = {
   id: number;
   name: string;
   isArchive: boolean;
-  role: string;
+  role: EmployeeRoles;
   phone: string;
   birthday: string;
 };

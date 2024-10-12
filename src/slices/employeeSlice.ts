@@ -4,7 +4,7 @@ import { EmployeeFormData } from "../widgets/EmployeeEditForm/EmployeeEditForm.t
 
 import { Employee, employes } from "../mockData/employes";
 
-interface EmployeeState {
+export interface EmployeeState {
   employes: Employee[];
 }
 

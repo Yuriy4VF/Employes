@@ -1,33 +1,20 @@
 import styles from "./EmployeeListPage.module.scss";
 
-import { useState } from "react";
-
 import { EmployeeList, EmployeeSearchFilter } from "../widgets";
-import { employes as employesList } from "../../../mockData/employes";
+
+import { useSelector } from "react-redux";
+
+import { RootState } from "../../../app/store";
 
 const EmployeeListPage = () => {
-  const [employes, setEmployes] = useState([...employesList]);
+  const employees = useSelector((state: RootState) => state.employes.employes);
 
-  const toggleArchive = (id: number) => {
-    console.log(id);
-    setEmployes((prevEmployes) =>
-      prevEmployes.map((user) =>
-        user.id === id ? { ...user, isArchived: !user.isArchive } : user
-      )
-    );
-  };
-  const selectEmployee = (id: number) => {
-    const selectedEmployee = employes.find((user) => user.id === id);
-    console.log("Selected Employee:", selectedEmployee);
-  };
   return (
     <div className={styles.employeeList}>
-      <h1>Список сотрудников</h1>
       <EmployeeSearchFilter />
       <EmployeeList
-        employes={employes}
-        onSelectEmployee={selectEmployee}
-        onToggleArchive={toggleArchive}
+        employes={employees}
+        onSelectEmployee={(id) => console.log(id)}
       />
     </div>
   );
