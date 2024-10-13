@@ -12,13 +12,13 @@ export const EmployeeList: FC<EmployeeListProps> = ({
   return (
     <Paper elevation={3}>
       <List
-        subheader={
-          <ListSubheader>
-            <Typography variant="h5" paddingTop={2} paddingBottom={2}>
-              Список пользователей
-            </Typography>
-          </ListSubheader>
-        }
+      // subheader={
+      //   <ListSubheader>
+      //     <Typography variant="h5" paddingTop={2} paddingBottom={2}>
+      //       Список пользователей
+      //     </Typography>
+      //   </ListSubheader>
+      // }
       >
         {employes.map((employee) => (
           <EmployeeCard
