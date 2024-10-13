@@ -1,3 +1,5 @@
+import { generateId } from "../shared/helpers/generateId";
+
 export const enum EmployeeRoles {
   DRIVER = "driver",
   WAITER = "waiter",
@@ -151,4 +153,4 @@ export const employes: Employee[] = [
     phone: "+7 (877) 450-3253",
     birthday: "03.12.1994",
   },
-].map((node) => ({ ...node, id: String(Date.now()) }));
+].map((node) => ({ ...node, id: generateId() }));

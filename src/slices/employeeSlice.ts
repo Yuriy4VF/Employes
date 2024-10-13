@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 import { Employee, employes } from "../mockData/employes";
+import { generateId } from "../shared/helpers/generateId";
 
 export interface EmployeeState {
   employes: Employee[];
@@ -15,21 +15,18 @@ const employeeSlice = createSlice({
   initialState,
   reducers: {
     addEmployee: (state, action: PayloadAction<Employee>) => {
-      state.employes.push({ ...action.payload, id: String(Date.now()) });
+      state.employes.push({ ...action.payload, id: generateId() });
     },
 
     updateEmployee: (state, action: PayloadAction<Employee>) => {
-      console.log(action.payload);
-      const index = state.employes.findIndex(
-        (emp) => emp.id === action.payload.id
-      );
+      const { id, ...updatedData } = action.payload;
+      const index = state.employes.findIndex((emp) => emp.id === id);
       if (index !== -1) {
-        state.employes[index] = action.payload;
+        state.employes[index] = { ...state.employes[index], ...updatedData };
       }
     },
   },
 });
 
 export const { addEmployee, updateEmployee } = employeeSlice.actions;
-
 export default employeeSlice.reducer;
