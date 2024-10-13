@@ -1,27 +1,26 @@
 import styles from "./EmployeeCreatePage.module.scss";
+import { employeeDefaultData } from "../../../shared/formSchemes/defaultFormData";
 
-import { EmployeeEditForm } from "../../../widgets";
+import { addEmployee } from "../../../slices/employeeSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { EmployeeFormData } from "../../../widgets/EmployeeEditForm/EmployeeEditForm.type";
+import { EmployeeEditForm } from "../../widgets";
 
 const EmployeeCreatePage = () => {
-  const saveHandler: (data: EmployeeFormData) => void = (data) =>
-    console.log(data);
-
-  const initialData = {
-    name: "",
-    isArchive: false,
-    role: "",
-    phone: "",
-    birthday: "",
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleCreateEmployee = (data) => {
+    navigate("/employee", { replace: true });
+    dispatch(addEmployee(data));
   };
 
   return (
     <div className={styles.createPage}>
       <EmployeeEditForm
         edit={false}
-        onSubmit={saveHandler}
-        initialData={initialData}
+        onSubmit={handleCreateEmployee}
+        initialData={employeeDefaultData}
       />
     </div>
   );

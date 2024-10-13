@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { EmployeeFormData } from "../widgets/EmployeeEditForm/EmployeeEditForm.type";
-
 import { Employee, employes } from "../mockData/employes";
 
 export interface EmployeeState {
@@ -16,7 +14,7 @@ const employeeSlice = createSlice({
   name: "employes",
   initialState,
   reducers: {
-    addEmployee: (state, action: PayloadAction<EmployeeFormData>) => {
+    addEmployee: (state, action: PayloadAction<Employee>) => {
       state.employes.push({ ...action.payload, id: Date.now() });
     },
     removeEmployee: (state, action: PayloadAction<number>) => {
@@ -25,6 +23,7 @@ const employeeSlice = createSlice({
       );
     },
     updateEmployee: (state, action: PayloadAction<Employee>) => {
+      console.log(action.payload);
       const index = state.employes.findIndex(
         (emp) => emp.id === action.payload.id
       );
@@ -32,18 +31,10 @@ const employeeSlice = createSlice({
         state.employes[index] = action.payload;
       }
     },
-    toggleEmployee: (state, action: PayloadAction<number>) => {
-      const index = state.employes.findIndex(
-        (emp) => emp.id === action.payload
-      );
-      if (index !== -1) {
-        state.employes[index].isArchive = !state.employes[index].isArchive;
-      }
-    },
   },
 });
 
-export const { addEmployee, removeEmployee, updateEmployee, toggleEmployee } =
+export const { addEmployee, removeEmployee, updateEmployee } =
   employeeSlice.actions;
 
 export default employeeSlice.reducer;

@@ -6,21 +6,21 @@ import { EmployeeFormData } from "./EmployeeEditForm.type";
 
 import { Box, Typography } from "@mui/material";
 
-import { SimpleButton } from "../../shared/ui";
+import { SimpleButton } from "../../../shared/ui";
 
 import {
   ControlledTextField,
   ControlledMaskedTextField,
   ControlledSelect,
   ControlledCheckbox,
-} from "../../shared/ui/inputs/controlled";
+} from "../../../shared/ui/inputs/controlled";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { DATE_MASK, PHONE_MASK } from "../../shared/constants/fieldPatterns";
+import { DATE_MASK, PHONE_MASK } from "../../../shared/constants/fieldPatterns";
 
-import { employeeEditSchema } from "../../shared/formSchemes/formSchemes";
+import { employeeEditSchema } from "../../../shared/formSchemes/formSchemes";
 
 export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
   edit,

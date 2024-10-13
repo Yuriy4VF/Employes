@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { EmployeeRoles } from "../../../../../mockData/employes";
-import styles from "./EmployeeCard.module.scss"; // создайте соответствующий файл стилей
+import styles from "./EmployeeCard.module.scss";
 import {
   ListItem,
   ListItemText,
@@ -40,7 +40,7 @@ export const EmployeeCard: FC<EmployeeCardProps> = ({
     : styles.card;
 
   return (
-    <ListItem className={className} onClick={() => onSelectEmployee(id)}>
+    <ListItem className={className} onClick={() => onSelectEmployee(employee)}>
       <ListItemText
         primary={name}
         secondary={

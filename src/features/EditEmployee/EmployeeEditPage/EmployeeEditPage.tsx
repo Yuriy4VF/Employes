@@ -1,27 +1,31 @@
-import { EmployeeEditForm } from "../../../widgets";
 import styles from "./EmployeeEditPage.module.scss";
 
-import { EmployeeFormData } from "../../../widgets/EmployeeEditForm/EmployeeEditForm.type";
+import { employeeDefaultData } from "../../../shared/formSchemes/defaultFormData";
+import { updateEmployee } from "../../../slices/employeeSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const employee = {
-  id: 1,
-  name: "Илья Емельянов",
-  isArchive: true,
-  role: "driver",
-  phone: "+7 (883) 508-3269",
-  birthday: "12.02.1982",
-};
+import { EmployeeEditForm } from "../../widgets";
 
 export const EmployeeEditPage = () => {
-  const saveHandler: (data: EmployeeFormData) => void = (data) =>
-    console.log(data);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const employeeData = location.state?.employee || employeeDefaultData;
+
+  const handleUpdateEmployee = (data) => {
+    dispatch(updateEmployee(data));
+    navigate("/employee", { replace: true });
+  };
 
   return (
     <div className={styles.editPage}>
       <EmployeeEditForm
         edit={true}
-        onSubmit={saveHandler}
-        initialData={employee}
+        onSubmit={handleUpdateEmployee}
+        initialData={employeeData}
       />
     </div>
   );
