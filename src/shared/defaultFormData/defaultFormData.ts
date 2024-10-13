@@ -1,7 +1,9 @@
+import { EmployeeRoles } from "../../mockData/employes";
 export const employeeDefaultData = {
+  id: "",
   name: "",
   isArchive: false,
-  role: "",
+  role: EmployeeRoles.NO_ROLE,
   phone: "",
   birthday: "",
 };

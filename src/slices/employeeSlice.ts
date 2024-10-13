@@ -15,13 +15,9 @@ const employeeSlice = createSlice({
   initialState,
   reducers: {
     addEmployee: (state, action: PayloadAction<Employee>) => {
-      state.employes.push({ ...action.payload, id: Date.now() });
+      state.employes.push({ ...action.payload, id: String(Date.now()) });
     },
-    removeEmployee: (state, action: PayloadAction<number>) => {
-      state.employes = state.employes.filter(
-        (emp) => emp.id !== action.payload
-      );
-    },
+
     updateEmployee: (state, action: PayloadAction<Employee>) => {
       console.log(action.payload);
       const index = state.employes.findIndex(
@@ -34,7 +30,6 @@ const employeeSlice = createSlice({
   },
 });
 
-export const { addEmployee, removeEmployee, updateEmployee } =
-  employeeSlice.actions;
+export const { addEmployee, updateEmployee } = employeeSlice.actions;
 
 export default employeeSlice.reducer;

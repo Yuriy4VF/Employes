@@ -3,17 +3,13 @@ import { lazy } from "react";
 import { PageSuspense } from "../shared/ui";
 
 import App from "./App";
+import { Typography } from "@mui/material";
 
-const EmployeeCreatePage = lazy(
-  () => import("../features/AddEmployee/EmployeeCreatePage")
-);
+const EmployeeCreatePage = lazy(() => import("../pages/EmployeeCreatePage"));
 
-const EmployeeEditPage = lazy(
-  () => import("../features/EditEmployee/EmployeeEditPage")
-);
-const EmployeeListPage = lazy(
-  () => import("../features/ViewEmployees/EmployeeListPage")
-);
+const EmployeeEditPage = lazy(() => import("../pages/EmployeeEditPage"));
+
+const EmployeeListPage = lazy(() => import("../pages/EmployeeListPage"));
 
 const MainRoutes = createBrowserRouter([
   {
@@ -46,7 +42,20 @@ const MainRoutes = createBrowserRouter([
               </PageSuspense>
             }
           />
-          <Route path="*" element={<h1>Неизвестный роут</h1>} />
+
+          <Route
+            path="*"
+            element={
+              <Typography
+                variant="h4"
+                component="h2"
+                style={{ color: "#607d8b" }}
+                gutterBottom
+              >
+                По данному маршруту не найдено данных
+              </Typography>
+            }
+          />
         </Route>
       </Routes>
     ),

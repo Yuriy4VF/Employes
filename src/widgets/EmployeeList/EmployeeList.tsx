@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { List, ListSubheader, Paper, Typography } from "@mui/material";
-import { EmployeeListProps } from "../../types/EmployeeList.type";
+import { EmployeeListProps } from "./EmployeeList.type";
 
 import { EmployeeCard } from "../../shared/ui/EmployeeCard/EmployeeCard";
 

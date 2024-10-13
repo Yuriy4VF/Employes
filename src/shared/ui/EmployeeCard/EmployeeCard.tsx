@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { EmployeeRoles } from "../../../../../mockData/employes";
+import { Employee, EmployeeRoles } from "../../../mockData/employes";
 import styles from "./EmployeeCard.module.scss";
 import {
   ListItem,
@@ -9,14 +9,8 @@ import {
 } from "@mui/material";
 
 interface EmployeeCardProps {
-  employee: {
-    id: number;
-    name: string;
-    role: string;
-    phone: string;
-    isArchive: boolean;
-  };
-  onSelectEmployee: (id: string) => void;
+  employee: Employee;
+  onSelectEmployee: (id: Employee) => void;
 }
 
 const roleNames = {
@@ -34,7 +28,7 @@ export const EmployeeCard: FC<EmployeeCardProps> = ({
   employee,
   onSelectEmployee,
 }) => {
-  const { isArchive, role, name, phone, id } = employee;
+  const { isArchive, role, name, phone } = employee;
   const className = isArchive
     ? `${styles.card} ${styles.archive}`
     : styles.card;
