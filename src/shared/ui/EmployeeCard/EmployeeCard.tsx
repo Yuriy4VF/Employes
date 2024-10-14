@@ -1,28 +1,19 @@
 import { FC } from "react";
-import { Employee, EmployeeRoles } from "../../../mockData/employes";
+import { Employee } from "../../../mockData/employes";
 import styles from "./EmployeeCard.module.scss";
 import {
   ListItem,
-  ListItemText,
   FormControlLabel,
   Checkbox,
+  Box,
+  Typography,
 } from "@mui/material";
 
+import { getRoleName } from "../../helpers/roleName";
 interface EmployeeCardProps {
   employee: Employee;
-  onSelectEmployee: (id: Employee) => void;
+  onSelectEmployee: (employee: Employee) => void;
 }
-
-const roleNames = {
-  [EmployeeRoles.DRIVER]: "Водитель",
-  [EmployeeRoles.WAITER]: "Официант",
-  [EmployeeRoles.COOK]: "Повар",
-  [EmployeeRoles.NO_ROLE]: "Без роли",
-};
-
-const getRoleName = (role: EmployeeRoles) => {
-  return roleNames[role] || "Неизвестная роль";
-};
 
 export const EmployeeCard: FC<EmployeeCardProps> = ({
   employee,
@@ -35,21 +26,24 @@ export const EmployeeCard: FC<EmployeeCardProps> = ({
 
   return (
     <ListItem className={className} onClick={() => onSelectEmployee(employee)}>
-      <ListItemText
-        primary={name}
-        secondary={
-          <div className={styles.details}>
-            <div>Должность: {getRoleName(role)}</div>
-            <div>Телефон: {phone}</div>
-            <FormControlLabel
-              className={styles["no-pointer"]}
-              control={<Checkbox checked={isArchive} />}
-              label={"в архиве"}
-              labelPlacement="start"
-            />
-          </div>
-        }
-      />
+      <Box className={styles["card-box"]}>
+        <Typography variant="h6" className={styles.name}>
+          {name}{" "}
+        </Typography>
+        <Box display="flex" alignItems="center" className={styles.details}>
+          <Typography className={styles.role}>
+            Должность: {getRoleName(role)}
+          </Typography>
+          <Typography className={styles.phone}>Телефон: {phone}</Typography>
+
+          <FormControlLabel
+            className={styles.checkbox}
+            control={<Checkbox checked={isArchive} />}
+            label={"в архиве"}
+            labelPlacement="end"
+          />
+        </Box>
+      </Box>
     </ListItem>
   );
 };
