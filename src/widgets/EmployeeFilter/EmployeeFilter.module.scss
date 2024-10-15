@@ -1,0 +1,19 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 8px;
+
+  .roles {
+    width: 200px;
+  }
+
+  .archive {
+    width: 120px;
+    border: 1px solid black;
+  }
+}

@@ -7,7 +7,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-html {
+/* html {
   margin-right: calc(-1 * (100vw - 100%));
   overflow-x: hidden;
-}
+} */

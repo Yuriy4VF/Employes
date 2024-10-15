@@ -1,5 +1,5 @@
 import { EmployeeEditForm } from "./EmployeeEditForm/EmployeeEditForm";
 import { EmployeeList } from "./EmployeeList/EmployeeList";
-import { EmployeeSearchFilter } from "./EmployeeSearchFilter/EmployeeSearchFilter";
+import { EmployeeFilter } from "./EmployeeFilter/EmployeeFilter";
 
-export { EmployeeEditForm, EmployeeList, EmployeeSearchFilter };
+export { EmployeeEditForm, EmployeeList, EmployeeFilter };

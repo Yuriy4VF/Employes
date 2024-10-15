@@ -1,3 +1,4 @@
+import styles from "./EmployeeFilter.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import {
   TextField,
@@ -6,9 +7,10 @@ import {
   Select,
   MenuItem,
   Button,
+  Box,
 } from "@mui/material";
 
-const EmployeeFilter = () => {
+export const EmployeeFilter = () => {
   const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       archived: false,
@@ -25,29 +27,17 @@ const EmployeeFilter = () => {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+    <Box className={styles.filter}>
       <TextField
         label="Поиск"
         variant="outlined"
         onChange={handleQueryChange}
       />
-
-      <Controller
-        name="archived"
-        control={control}
-        render={({ field }) => (
-          <FormControlLabel
-            control={<Checkbox {...field} />}
-            label="В архиве"
-          />
-        )}
-      />
-
       <Controller
         name="position"
         control={control}
         render={({ field }) => (
-          <Select {...field} displayEmpty>
+          <Select {...field} displayEmpty className={styles.roles}>
             <MenuItem value="">Все должности</MenuItem>
             <MenuItem value="developer">Разработчик</MenuItem>
             <MenuItem value="designer">Дизайнер</MenuItem>
@@ -55,12 +45,22 @@ const EmployeeFilter = () => {
           </Select>
         )}
       />
+      <Box className={styles.archive}>
+        <Controller
+          name="archived"
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              control={<Checkbox {...field} />}
+              label={<span>В архиве</span>}
+            />
+          )}
+        />
+      </Box>
 
       <Button variant="contained" onClick={handleSubmit(onSubmit)}>
         Применить
       </Button>
-    </div>
+    </Box>
   );
 };
-
-export default EmployeeFilter;
