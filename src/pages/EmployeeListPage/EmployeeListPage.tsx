@@ -1,4 +1,5 @@
 import { EmployeeList } from "../../widgets";
+import EmployeeFilter from "../../widgets/EmployeeFilter/EmployeeFilter";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +33,7 @@ const EmployeeListPage = () => {
             Добавить сотрудника
           </SimpleButton>
         </Toolbar>
+        <EmployeeFilter />
       </AppBar>
 
       <EmployeeList
