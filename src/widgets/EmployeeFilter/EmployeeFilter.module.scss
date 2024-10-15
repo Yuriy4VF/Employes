@@ -6,14 +6,53 @@
   flex-wrap: wrap;
   background-color: white;
   margin-bottom: 20px;
-  padding: 8px;
+  padding: 20px;
 
-  .roles {
-    width: 200px;
+  @media screen and (min-width: "581px") {
+    flex-wrap: nowrap;
+    .query {
+      min-width: 140px;
+      margin-right: 12px;
+    }
+    .roles {
+      width: 200px;
+    }
+    .archiveStatus {
+      padding-left: 20px;
+      width: 168px;
+    }
   }
 
-  .archive {
-    width: 120px;
-    border: 1px solid black;
+  @media screen and (max-width: "420px") {
+    flex-direction: row;
+    .query {
+      order: 3;
+      width: 100%;
+    }
+    .roles {
+      order: 1;
+      width: 100%;
+    }
+    .archiveStatus {
+      order: 2;
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: "421px") and (max-width: "580px") {
+    flex-direction: row;
+    .query {
+      order: 3;
+      max-width: 200px;
+    }
+    .roles {
+      order: 1;
+      width: 160px;
+      margin-bottom: 12px;
+    }
+    .archiveStatus {
+      order: 2;
+      width: 120px;
+    }
   }
 }

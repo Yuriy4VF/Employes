@@ -26,13 +26,20 @@ export const EmployeeFilter = () => {
     console.log("Query:", event.target.value);
   };
 
+  const watchPosition = watch("position");
+  const watchArchived = watch("archived");
+
+  onSubmit({ position: watchPosition, archived: watchArchived });
+
   return (
     <Box className={styles.filter}>
       <TextField
+        className={styles.query}
         label="Поиск"
         variant="outlined"
         onChange={handleQueryChange}
       />
+
       <Controller
         name="position"
         control={control}
@@ -45,22 +52,18 @@ export const EmployeeFilter = () => {
           </Select>
         )}
       />
-      <Box className={styles.archive}>
-        <Controller
-          name="archived"
-          control={control}
-          render={({ field }) => (
-            <FormControlLabel
-              control={<Checkbox {...field} />}
-              label={<span>В архиве</span>}
-            />
-          )}
-        />
-      </Box>
 
-      <Button variant="contained" onClick={handleSubmit(onSubmit)}>
-        Применить
-      </Button>
+      <Controller
+        name="archived"
+        control={control}
+        render={({ field }) => (
+          <FormControlLabel
+            className={styles.archiveStatus}
+            control={<Checkbox {...field} />}
+            label={<span>В архиве</span>}
+          />
+        )}
+      />
     </Box>
   );
 };
