@@ -1,35 +1,42 @@
 import styles from "./EmployeeFilter.module.scss";
-import { useForm, Controller } from "react-hook-form";
 import {
   TextField,
   Checkbox,
   FormControlLabel,
   Select,
   MenuItem,
-  Button,
   Box,
 } from "@mui/material";
 
+import { getRoleName } from "../../shared/helpers/roleName";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeStatus,
+  changeQuery,
+  changeRole,
+} from "../../slices/filterSlice";
+import { RootState } from "../../app/store";
+
+import { options } from "../../shared/formSchemes/filterOptions";
+
 export const EmployeeFilter = () => {
-  const { control, handleSubmit, watch } = useForm({
-    defaultValues: {
-      archived: false,
-      position: "",
-    },
-  });
+  const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    console.log("Checkbox and Select Data:", data);
+  const role = useSelector((state: RootState) => state.filter.role);
+  const status = useSelector((state: RootState) => state.filter.archiveStatus);
+  const value = useSelector((state: RootState) => state.filter.name);
+
+  const handleQueryChange = (e) => {
+    dispatch(changeQuery(e.target.value));
   };
 
-  const handleQueryChange = (event) => {
-    console.log("Query:", event.target.value);
+  const handleRoleChange = (e) => {
+    dispatch(changeRole(e.target.value));
   };
 
-  const watchPosition = watch("position");
-  const watchArchived = watch("archived");
-
-  onSubmit({ position: watchPosition, archived: watchArchived });
+  const handleStatusChange = (e) => {
+    dispatch(changeStatus(e.target.checked));
+  };
 
   return (
     <Box className={styles.filter}>
@@ -38,31 +45,26 @@ export const EmployeeFilter = () => {
         label="Поиск"
         variant="outlined"
         onChange={handleQueryChange}
+        defaultValue={value}
       />
 
-      <Controller
-        name="position"
-        control={control}
-        render={({ field }) => (
-          <Select {...field} displayEmpty className={styles.roles}>
-            <MenuItem value="">Все должности</MenuItem>
-            <MenuItem value="developer">Разработчик</MenuItem>
-            <MenuItem value="designer">Дизайнер</MenuItem>
-            <MenuItem value="manager">Менеджер</MenuItem>
-          </Select>
-        )}
-      />
+      <Select
+        value={role}
+        onChange={handleRoleChange}
+        displayEmpty
+        className={styles.roles}
+      >
+        {options.map((value) => (
+          <MenuItem value={value} key={value}>
+            {getRoleName(value)}
+          </MenuItem>
+        ))}
+      </Select>
 
-      <Controller
-        name="archived"
-        control={control}
-        render={({ field }) => (
-          <FormControlLabel
-            className={styles.archiveStatus}
-            control={<Checkbox {...field} />}
-            label={<span>В архиве</span>}
-          />
-        )}
+      <FormControlLabel
+        className={styles.archiveStatus}
+        control={<Checkbox checked={status} onChange={handleStatusChange} />}
+        label={<span>В архиве</span>}
       />
     </Box>
   );

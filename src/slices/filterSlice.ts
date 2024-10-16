@@ -8,7 +8,8 @@ export type FilterState = {
 };
 
 export type FilterQuery = FilterState["name"];
-export type FilterParams = Omit<FilterState, "name">;
+export type FilterStatus = FilterState["archiveStatus"];
+export type FilterRole = FilterState["role"];
 
 const initialState: FilterState = {
   name: "",
@@ -21,16 +22,19 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     changeQuery: (state, action: PayloadAction<FilterQuery>) => {
-      console.log(action.payload);
       state.name = action.payload;
     },
-    changeParams: (state, action: PayloadAction<FilterParams>) => {
+
+    changeStatus: (state, action: PayloadAction<FilterStatus>) => {
+      console.log(typeof action.payload);
+      state.archiveStatus = action.payload;
+    },
+    changeRole: (state, action: PayloadAction<FilterRole>) => {
       console.log(action.payload);
-      state.archiveStatus = action.payload.archiveStatus;
-      state.role = action.payload.role;
+      state.role = action.payload;
     },
   },
 });
 
-export const { changeQuery, changeParams } = filterSlice.actions;
+export const { changeQuery, changeStatus, changeRole } = filterSlice.actions;
 export default filterSlice.reducer;
