@@ -8,7 +8,6 @@ import { SimpleButton } from "../../shared/ui";
 import { Box, Typography, AppBar, Toolbar } from "@mui/material";
 
 const EmployeeListPage = () => {
-  const employees = useSelector((state: RootState) => state.employes.employes);
   const navigate = useNavigate();
 
   const handleSelectEmployee = (employee: Employee) => {
@@ -35,10 +34,7 @@ const EmployeeListPage = () => {
         </Toolbar>
       </AppBar>
       <EmployeeFilter />
-      <EmployeeList
-        employes={employees}
-        onSelectEmployee={handleSelectEmployee}
-      />
+      <EmployeeList onSelectEmployee={handleSelectEmployee} />
     </Box>
   );
 };
