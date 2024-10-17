@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Employee } from "../../mockData/employes";
 import { SimpleButton } from "../../shared/ui";
 import { Box, Typography, AppBar, Toolbar } from "@mui/material";
+import styles from "./EmployeeListPage.module.scss";
 
 const EmployeeListPage = () => {
   const navigate = useNavigate();
@@ -22,18 +23,21 @@ const EmployeeListPage = () => {
     navigate("/employee/new", { replace: true });
 
   return (
-    <Box>
-      <AppBar position="sticky" sx={{ mb: 2 }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Работа с сотрудниками
-          </Typography>
-          <SimpleButton onClick={handleCreateEmployee}>
-            Добавить сотрудника
-          </SimpleButton>
-        </Toolbar>
-      </AppBar>
-      <EmployeeFilter />
+    <Box className={styles.employeeList}>
+      <Box className={styles.header}>
+        <AppBar position="sticky">
+          <Toolbar className={styles.Toolbar}>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Работа с сотрудниками
+            </Typography>
+            <SimpleButton onClick={handleCreateEmployee}>
+              Добавить сотрудника
+            </SimpleButton>
+          </Toolbar>
+        </AppBar>
+        <EmployeeFilter />
+      </Box>
+
       <EmployeeList onSelectEmployee={handleSelectEmployee} />
     </Box>
   );
