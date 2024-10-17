@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { FieldError } from "react-hook-form";
+import { RenderRole } from "../../../../helpers/roleName";
 
-import { RoleOptions } from "../../../../formSchemes/roleSelectOptions";
-import { EmployeeRoles } from "../../../../../mockData/employes";
+import { RoleOptions } from "../../../../selectOptions/roleSelectOptions";
 
 interface ControlledSelectProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -20,7 +20,7 @@ interface ControlledSelectProps<TFieldValues extends FieldValues> {
   options: RoleOptions;
   error?: FieldError;
   helperText?: React.ReactNode;
-  renderRole: (role: EmployeeRoles) => string;
+  renderRole: RenderRole;
 }
 
 export const ControlledSelect = <TFieldValues extends FieldValues>({

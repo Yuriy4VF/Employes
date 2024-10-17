@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { employeeArray } from "../../mockData/employes";
+import { roleOptions } from "../selectOptions/roleSelectOptions";
 
 export const employeeEditSchema = yup.object().shape({
   name: yup
@@ -9,6 +9,6 @@ export const employeeEditSchema = yup.object().shape({
     .required("Это обязательное поле"),
   phone: yup.string().min(8).required("Это обязательное поле"),
   birthday: yup.string().min(8).required("Это обязательное поле"),
-  role: yup.string().oneOf(employeeArray).required("Должность обязательна"),
+  role: yup.string().oneOf(roleOptions).required("Должность обязательна"),
   isArchive: yup.boolean().required(),
 });

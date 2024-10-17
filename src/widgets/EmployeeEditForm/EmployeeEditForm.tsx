@@ -13,7 +13,7 @@ import {
   ControlledCheckbox,
 } from "../../shared/ui/inputs/controlled";
 
-import { roleOptions } from "../../shared/formSchemes/roleSelectOptions";
+import { roleOptions } from "../../shared/selectOptions/roleSelectOptions";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

@@ -18,7 +18,7 @@ import {
 } from "../../slices/filterSlice";
 import { RootState } from "../../app/store";
 
-import { roleOptions } from "../../shared/formSchemes/roleSelectOptions";
+import { roleOptions } from "../../shared/selectOptions/roleSelectOptions";
 import { EmployeeRoles } from "../../mockData/employes";
 
 export const EmployeeFilter = () => {

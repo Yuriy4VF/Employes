@@ -1,5 +1,7 @@
 import { EmployeeRoles } from "../../mockData/employes";
 
+export type RenderRole = (role: EmployeeRoles) => string;
+
 export const roleNames = {
   [EmployeeRoles.DRIVER]: "Водитель",
   [EmployeeRoles.WAITER]: "Официант",
@@ -7,7 +9,7 @@ export const roleNames = {
   [EmployeeRoles.NO_ROLE]: "Без должности",
 };
 
-export const getRoleName = (role: EmployeeRoles) => {
+export const getRoleName: RenderRole = (role) => {
   return roleNames[role] || "Неизвестная роль";
 };
 
@@ -18,6 +20,6 @@ export const roleNamesByFilter = {
   [EmployeeRoles.NO_ROLE]: "Все",
 };
 
-export const getRoleNameByFilter = (role: EmployeeRoles) => {
+export const getRoleNameByFilter: RenderRole = (role) => {
   return roleNamesByFilter[role] || "Неизвестная роль";
 };
