@@ -9,7 +9,6 @@ export type FilterState = {
 
 export type FilterQuery = FilterState["name"];
 export type FilterStatus = FilterState["archiveStatus"];
-export type FilterRole = FilterState["role"];
 
 const initialState: FilterState = {
   name: "",
@@ -29,7 +28,7 @@ const filterSlice = createSlice({
       console.log(typeof action.payload);
       state.archiveStatus = action.payload;
     },
-    changeRole: (state, action: PayloadAction<FilterRole>) => {
+    changeRole: (state, action: PayloadAction<EmployeeRoles>) => {
       console.log(action.payload);
       state.role = action.payload;
     },
