@@ -1,7 +1,6 @@
 import { EmployeeList } from "../../widgets";
 import { EmployeeFilter } from "../../widgets";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
+
 import { useNavigate } from "react-router-dom";
 import { Employee } from "../../mockData/employes";
 import { SimpleButton } from "../../shared/ui";
