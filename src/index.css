@@ -7,7 +7,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-/* html {
-  margin-right: calc(-1 * (100vw - 100%));
-  overflow-x: hidden;
-} */
+html {
+  overflow-y: scroll;
+}
