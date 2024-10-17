@@ -7,11 +7,9 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 
-import {
-  getRoleName,
-  getRoleNameByFilter,
-} from "../../shared/helpers/roleName";
+import { getRoleNameByFilter } from "../../shared/helpers/roleName";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeStatus,
@@ -21,6 +19,7 @@ import {
 import { RootState } from "../../app/store";
 
 import { roleOptions } from "../../shared/formSchemes/roleSelectOptions";
+import { EmployeeRoles } from "../../mockData/employes";
 
 export const EmployeeFilter = () => {
   const dispatch = useDispatch();
@@ -29,15 +28,15 @@ export const EmployeeFilter = () => {
   const status = useSelector((state: RootState) => state.filter.archiveStatus);
   const value = useSelector((state: RootState) => state.filter.name);
 
-  const handleQueryChange = (e) => {
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeQuery(e.target.value));
   };
 
-  const handleRoleChange = (e) => {
-    dispatch(changeRole(e.target.value));
+  const handleRoleChange = (e: SelectChangeEvent<EmployeeRoles>) => {
+    dispatch(changeRole(e.target.value as EmployeeRoles));
   };
 
-  const handleStatusChange = (e) => {
+  const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeStatus(e.target.checked));
   };
 
