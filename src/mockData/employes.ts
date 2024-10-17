@@ -16,7 +16,7 @@ export type Employee = {
   birthday: string;
 };
 
-export const employes1: Employee[] = [
+export const employes: Employee[] = [
   {
     id: 1,
     name: "Илья Емельянов",
