@@ -8,7 +8,10 @@ import {
   Box,
 } from "@mui/material";
 
-import { getRoleName } from "../../shared/helpers/roleName";
+import {
+  getRoleName,
+  getRoleNameByFilter,
+} from "../../shared/helpers/roleName";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeStatus,
@@ -56,7 +59,7 @@ export const EmployeeFilter = () => {
       >
         {roleOptions.map((value) => (
           <MenuItem value={value} key={value}>
-            {getRoleName(value)}
+            {getRoleNameByFilter(value)}
           </MenuItem>
         ))}
       </Select>
