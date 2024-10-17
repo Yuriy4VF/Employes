@@ -16,7 +16,7 @@ export type Employee = {
   birthday: string;
 };
 
-let employes1: Employee[] = [
+export const employes1: Employee[] = [
   {
     id: 1,
     name: "Илья Емельянов",
@@ -154,13 +154,3 @@ let employes1: Employee[] = [
     birthday: "03.12.1994",
   },
 ].map((node) => ({ ...node, id: generateId() }));
-
-const newList = [];
-
-for (let i = 0; i < 100; i++) {
-  for (let k = 0; k < employes1.length; k++) {
-    newList.push({ ...employes1[k], id: String(employes1[k].id + i) });
-  }
-}
-
-export const employes = newList;
