@@ -16,6 +16,8 @@ export type Employee = {
   birthday: string;
 };
 
+export type EmployeeFormData = Omit<Employee, "id">;
+
 export const employes: Employee[] = [
   {
     id: 1,

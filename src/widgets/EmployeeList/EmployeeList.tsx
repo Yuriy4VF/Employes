@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Employee } from "../../mockData/employes";
 
 import { List, Paper } from "@mui/material";
 import { EmployeeListProps } from "./EmployeeList.type";
@@ -12,7 +13,7 @@ export const EmployeeList: FC<EmployeeListProps> = ({ onSelectEmployee }) => {
   return (
     <Paper elevation={3}>
       <List>
-        {filteredEmployee.map((employee) => (
+        {filteredEmployee.map((employee: Employee) => (
           <EmployeeCard
             key={employee.id}
             employee={employee}

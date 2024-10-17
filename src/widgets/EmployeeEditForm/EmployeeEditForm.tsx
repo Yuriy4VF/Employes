@@ -2,7 +2,6 @@ import styles from "./EmployeeEditForm.module.scss";
 
 import { FC } from "react";
 import type { EmployeeEditFormProps } from "./EmployeeEditForm.type";
-import { EmployeeFormData } from "./EmployeeEditForm.type";
 
 import { Box, Typography } from "@mui/material";
 
@@ -21,6 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { DATE_MASK, PHONE_MASK } from "../../shared/constants/fieldPatterns";
 
 import { employeeEditSchema } from "../../shared/formSchemes/formSchemes";
+import { EmployeeFormData } from "../../mockData/employes";
 
 export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
   edit,
