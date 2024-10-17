@@ -38,7 +38,11 @@ export const ControlledSelect = <TFieldValues extends FieldValues>({
       name={name}
       control={control}
       render={({ field }) => (
-        <Select {...(field as SelectProps)} labelId={`${name}-label`}>
+        <Select
+          {...(field as SelectProps)}
+          labelId={`${name}-label`}
+          label={label}
+        >
           {options.map((role) => (
             <MenuItem key={role} value={role}>
               {renderRole(role)}
