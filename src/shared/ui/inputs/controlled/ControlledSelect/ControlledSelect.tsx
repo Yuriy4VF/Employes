@@ -10,18 +10,17 @@ import {
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { FieldError } from "react-hook-form";
 
-interface Option {
-  value: string | number;
-  label: string;
-}
+import { RoleOptions } from "../../../../formSchemes/roleSelectOptions";
+import { EmployeeRoles } from "../../../../../mockData/employes";
 
 interface ControlledSelectProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: Path<TFieldValues>;
   label: string;
-  options: Option[];
+  options: RoleOptions;
   error?: FieldError;
   helperText?: React.ReactNode;
+  renderRole: (role: EmployeeRoles) => string;
 }
 
 export const ControlledSelect = <TFieldValues extends FieldValues>({
@@ -31,6 +30,7 @@ export const ControlledSelect = <TFieldValues extends FieldValues>({
   options,
   error,
   helperText,
+  renderRole,
 }: ControlledSelectProps<TFieldValues>) => (
   <FormControl fullWidth margin="normal" error={!!error}>
     <InputLabel id={`${name}-label`}>{label}</InputLabel>
@@ -39,9 +39,9 @@ export const ControlledSelect = <TFieldValues extends FieldValues>({
       control={control}
       render={({ field }) => (
         <Select {...(field as SelectProps)} labelId={`${name}-label`}>
-          {options.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {options.map((role) => (
+            <MenuItem key={role} value={role}>
+              {renderRole(role)}
             </MenuItem>
           ))}
         </Select>

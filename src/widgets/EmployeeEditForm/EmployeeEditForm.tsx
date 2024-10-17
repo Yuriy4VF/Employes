@@ -3,15 +3,7 @@ import styles from "./EmployeeEditForm.module.scss";
 import { FC } from "react";
 import type { EmployeeEditFormProps } from "./EmployeeEditForm.type";
 
-import {
-  Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { SimpleButton } from "../../shared/ui";
 
@@ -23,14 +15,15 @@ import {
 
 import { roleOptions } from "../../shared/formSchemes/roleSelectOptions";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { DATE_MASK, PHONE_MASK } from "../../shared/constants/fieldPatterns";
 
 import { employeeEditSchema } from "../../shared/formSchemes/formSchemes";
-import { EmployeeFormData, EmployeeRoles } from "../../mockData/employes";
+import { EmployeeFormData } from "../../mockData/employes";
 import { getRoleName } from "../../shared/helpers/roleName";
+import { ControlledSelect } from "../../shared/ui/inputs/controlled/ControlledSelect/ControlledSelect";
 
 export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
   edit,
@@ -88,24 +81,15 @@ export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
         error={!!errors.birthday}
         helperText={errors.birthday ? errors.birthday.message : ""}
       />
-
-      <FormControl fullWidth error={!!errors.role}>
-        <InputLabel id="role-label">Должность</InputLabel>
-        <Controller
-          name="role"
-          control={control}
-          render={({ field }) => (
-            <Select {...field} labelId="role-label" label="Должность">
-              {roleOptions.map((role: EmployeeRoles) => (
-                <MenuItem value={role}>{getRoleName(role)}</MenuItem>
-              ))}
-            </Select>
-          )}
-        />
-        <FormHelperText>
-          {errors.role ? errors.role.message : ""}
-        </FormHelperText>
-      </FormControl>
+      <ControlledSelect
+        control={control}
+        name="role"
+        label="Должность"
+        options={roleOptions}
+        error={errors.role}
+        helperText={errors.role ? "This field is required" : ""}
+        renderRole={getRoleName}
+      />
 
       <ControlledCheckbox control={control} name="isArchive" label="В архиве" />
 
