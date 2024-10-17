@@ -17,7 +17,7 @@ import {
 } from "../../slices/filterSlice";
 import { RootState } from "../../app/store";
 
-import { options } from "../../shared/formSchemes/filterOptions";
+import { roleOptions } from "../../shared/formSchemes/roleSelectOptions";
 
 export const EmployeeFilter = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export const EmployeeFilter = () => {
         displayEmpty
         className={styles.roles}
       >
-        {options.map((value) => (
+        {roleOptions.map((value) => (
           <MenuItem value={value} key={value}>
             {getRoleName(value)}
           </MenuItem>

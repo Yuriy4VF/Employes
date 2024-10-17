@@ -7,6 +7,13 @@ export const enum EmployeeRoles {
   NO_ROLE = "no",
 }
 
+export const employeeArray: EmployeeRoles[] = [
+  EmployeeRoles.NO_ROLE,
+  EmployeeRoles.DRIVER,
+  EmployeeRoles.COOK,
+  EmployeeRoles.WAITER,
+];
+
 export type Employee = {
   id?: string;
   name: string;
