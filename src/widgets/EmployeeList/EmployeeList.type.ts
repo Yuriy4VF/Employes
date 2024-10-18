@@ -1,5 +1,5 @@
-import { Employee } from "../../mockData/employes";
+import { EmployeeType } from "../../mockData/employes";
 
 export interface EmployeeListProps {
-  onSelectEmployee: (employee: Employee) => void;
+  onSelectEmployee: (employee: EmployeeType) => void;
 }

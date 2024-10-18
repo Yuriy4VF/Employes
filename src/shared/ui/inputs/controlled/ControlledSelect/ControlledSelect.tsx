@@ -1,3 +1,7 @@
+import { FieldError } from "react-hook-form";
+import { RenderRoleType } from "../../../../helpers/roleName";
+import { RoleOptionsType } from "../../../../selectOptions/roleSelectOptions";
+
 import React from "react";
 import {
   FormControl,
@@ -7,20 +11,17 @@ import {
   Typography,
   SelectProps,
 } from "@mui/material";
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
-import { FieldError } from "react-hook-form";
-import { RenderRole } from "../../../../helpers/roleName";
 
-import { RoleOptions } from "../../../../selectOptions/roleSelectOptions";
+import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
 interface ControlledSelectProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: Path<TFieldValues>;
   label: string;
-  options: RoleOptions;
+  options: RoleOptionsType;
   error?: FieldError;
   helperText?: React.ReactNode;
-  renderRole: RenderRole;
+  renderRole: RenderRoleType;
 }
 
 export const ControlledSelect = <TFieldValues extends FieldValues>({

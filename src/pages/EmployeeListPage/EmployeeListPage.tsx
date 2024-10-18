@@ -1,16 +1,16 @@
-import { EmployeeList } from "../../widgets";
-import { EmployeeFilter } from "../../widgets";
+import { EmployeeType } from "../../mockData/employes";
+import styles from "./EmployeeListPage.module.scss";
 
 import { useNavigate } from "react-router-dom";
-import { Employee } from "../../mockData/employes";
-import { SimpleButton } from "../../shared/ui";
+
 import { Box, Typography, AppBar, Toolbar } from "@mui/material";
-import styles from "./EmployeeListPage.module.scss";
+import { SimpleButton } from "../../shared/ui";
+import { EmployeeList, EmployeeFilter } from "../../widgets";
 
 const EmployeeListPage = () => {
   const navigate = useNavigate();
 
-  const handleSelectEmployee = (employee: Employee) => {
+  const handleSelectEmployee = (employee: EmployeeType) => {
     const { id } = employee;
     navigate(`/employee/edit/${id}`, {
       state: { employee },
@@ -25,8 +25,8 @@ const EmployeeListPage = () => {
     <Box className={styles.employeeList}>
       <Box className={styles.header}>
         <AppBar position="sticky">
-          <Toolbar className={styles.Toolbar}>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Toolbar className={styles.toolbar}>
+            <Typography variant="h6" className={styles.title}>
               Работа с сотрудниками
             </Typography>
             <SimpleButton onClick={handleCreateEmployee}>

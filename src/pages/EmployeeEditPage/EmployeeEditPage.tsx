@@ -1,13 +1,15 @@
+import { EmployeeType } from "../../mockData/employes";
+
 import styles from "./EmployeeEditPage.module.scss";
 
 import { employeeDefaultData } from "../../shared/defaultFormData/defaultFormData";
+
 import { updateEmployee } from "../../slices/employeeSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import { EmployeeEditForm } from "../../widgets";
-import { Employee } from "../../mockData/employes";
 
 export const EmployeeEditPage = () => {
   const location = useLocation();
@@ -16,7 +18,7 @@ export const EmployeeEditPage = () => {
 
   const employeeData = location.state?.employee || employeeDefaultData;
 
-  const handleUpdateEmployee = (data: Employee) => {
+  const handleUpdateEmployee = (data: EmployeeType) => {
     dispatch(updateEmployee(data));
     navigate("/employee", { replace: true });
   };

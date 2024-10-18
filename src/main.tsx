@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom/client";
-import "normalize.css";
 import "./index.css";
+import "normalize.css";
+
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
+
 import MainRoutes from "./app/mainRoutes";
 
 import store from "./app/store";

@@ -1,7 +1,7 @@
-import { Employee } from "../../mockData/employes";
+import { EmployeeType } from "../../mockData/employes";
 
 export interface EmployeeEditFormProps {
   edit: boolean;
-  initialData: Employee;
-  onSubmit: (data: Employee) => void;
+  initialData: EmployeeType;
+  onSubmit: (data: EmployeeType) => void;
 }

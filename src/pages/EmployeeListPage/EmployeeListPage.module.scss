@@ -1,6 +1,7 @@
 .employeeList {
   width: 100%;
   height: 100%;
+
   .header {
     position: sticky;
     top: 0;
@@ -8,5 +9,12 @@
     background-color: white;
     border-bottom: 1px solid rgba(128, 128, 128, 0.281);
     margin-bottom: 20px;
+
+    .toolbar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
   }
 }

@@ -1,9 +1,8 @@
 import { createBrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { lazy } from "react";
-import { PageSuspense } from "../shared/ui";
+import { PageSuspense, Message } from "../shared/ui";
 
 import App from "./App";
-import { Typography } from "@mui/material";
 
 const EmployeeCreatePage = lazy(() => import("../pages/EmployeeCreatePage"));
 
@@ -45,16 +44,7 @@ const MainRoutes = createBrowserRouter([
 
           <Route
             path="*"
-            element={
-              <Typography
-                variant="h4"
-                component="h2"
-                style={{ color: "#607d8b" }}
-                gutterBottom
-              >
-                По данному маршруту не найдено данных
-              </Typography>
-            }
+            element={<Message>По данному маршруту не найдено данных</Message>}
           />
         </Route>
       </Routes>

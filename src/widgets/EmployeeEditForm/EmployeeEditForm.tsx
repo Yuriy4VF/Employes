@@ -1,29 +1,26 @@
+import { FC } from "react";
+import { EmployeeEditFormProps } from "./EmployeeEditForm.type";
+import { EmployeeFormDataType } from "../../mockData/employes";
+
 import styles from "./EmployeeEditForm.module.scss";
 
-import { FC } from "react";
-import type { EmployeeEditFormProps } from "./EmployeeEditForm.type";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Box, Typography } from "@mui/material";
-
 import { SimpleButton } from "../../shared/ui";
 
 import {
   ControlledTextField,
   ControlledMaskedTextField,
   ControlledCheckbox,
+  ControlledSelect,
 } from "../../shared/ui/inputs/controlled";
 
-import { roleOptions } from "../../shared/selectOptions/roleSelectOptions";
-
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
 import { DATE_MASK, PHONE_MASK } from "../../shared/constants/fieldPatterns";
-
+import { roleOptions } from "../../shared/selectOptions/roleSelectOptions";
 import { employeeEditSchema } from "../../shared/formSchemes/formSchemes";
-import { EmployeeFormData } from "../../mockData/employes";
 import { getRoleName } from "../../shared/helpers/roleName";
-import { ControlledSelect } from "../../shared/ui/inputs/controlled/ControlledSelect/ControlledSelect";
 
 export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
   edit,
@@ -34,7 +31,7 @@ export const EmployeeEditForm: FC<EmployeeEditFormProps> = ({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<EmployeeFormData>({
+  } = useForm<EmployeeFormDataType>({
     resolver: yupResolver(employeeEditSchema),
     defaultValues: {
       ...initialData,

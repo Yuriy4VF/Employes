@@ -1,6 +1,7 @@
-import { createSelector } from "reselect";
 import { RootState } from "../../app/store";
-import { EmployeeRoles } from "../../mockData/employes";
+import { EmployeeRolesEnum } from "../../mockData/employes";
+
+import { createSelector } from "reselect";
 
 const selectEmployee = (state: RootState) => state.employes.employes;
 const selectRole = (state: RootState) => state.filter.role;
@@ -12,7 +13,7 @@ export const selectFilteredEmployes = createSelector(
   (employes, role, archiveStatus, query) => {
     return employes.filter((employee) => {
       const matchesRole =
-        role === EmployeeRoles.NO_ROLE || employee.role === role;
+        role === EmployeeRolesEnum.NO_ROLE || employee.role === role;
       const matchesStatus =
         archiveStatus !== undefined
           ? employee.isArchive === archiveStatus

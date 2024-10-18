@@ -1,10 +1,10 @@
-import { EmployeeRoles } from "../../mockData/employes";
+import { EmployeeRolesEnum } from "../../mockData/employes";
 
-export const roleOptions: EmployeeRoles[] = [
-  EmployeeRoles.DRIVER,
-  EmployeeRoles.WAITER,
-  EmployeeRoles.COOK,
-  EmployeeRoles.NO_ROLE,
+export const roleOptions: EmployeeRolesEnum[] = [
+  EmployeeRolesEnum.DRIVER,
+  EmployeeRolesEnum.WAITER,
+  EmployeeRolesEnum.COOK,
+  EmployeeRolesEnum.NO_ROLE,
 ];
 
-export type RoleOptions = typeof roleOptions;
+export type RoleOptionsType = typeof roleOptions;

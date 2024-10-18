@@ -1,4 +1,9 @@
+import { RootState } from "../../app/store";
+import { EmployeeRolesEnum } from "../../mockData/employes";
+import { SelectChangeEvent } from "@mui/material";
+
 import styles from "./EmployeeFilter.module.scss";
+
 import {
   TextField,
   Checkbox,
@@ -7,19 +12,16 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
-import { SelectChangeEvent } from "@mui/material";
 
-import { getRoleNameByFilter } from "../../shared/helpers/roleName";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeStatus,
   changeQuery,
   changeRole,
 } from "../../slices/filterSlice";
-import { RootState } from "../../app/store";
 
+import { getRoleNameByFilter } from "../../shared/helpers/roleName";
 import { roleOptions } from "../../shared/selectOptions/roleSelectOptions";
-import { EmployeeRoles } from "../../mockData/employes";
 
 export const EmployeeFilter = () => {
   const dispatch = useDispatch();
@@ -32,8 +34,8 @@ export const EmployeeFilter = () => {
     dispatch(changeQuery(e.target.value));
   };
 
-  const handleRoleChange = (e: SelectChangeEvent<EmployeeRoles>) => {
-    dispatch(changeRole(e.target.value as EmployeeRoles));
+  const handleRoleChange = (e: SelectChangeEvent<EmployeeRolesEnum>) => {
+    dispatch(changeRole(e.target.value as EmployeeRolesEnum));
   };
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {

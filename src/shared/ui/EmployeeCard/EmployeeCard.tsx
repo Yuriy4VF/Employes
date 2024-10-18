@@ -1,6 +1,8 @@
 import { FC } from "react";
-import { Employee } from "../../../mockData/employes";
+import { EmployeeType } from "../../../mockData/employes";
+
 import styles from "./EmployeeCard.module.scss";
+
 import {
   ListItem,
   FormControlLabel,
@@ -11,8 +13,8 @@ import {
 
 import { getRoleName } from "../../helpers/roleName";
 interface EmployeeCardProps {
-  employee: Employee;
-  onSelectEmployee: (employee: Employee) => void;
+  employee: EmployeeType;
+  onSelectEmployee: (employee: EmployeeType) => void;
 }
 
 export const EmployeeCard: FC<EmployeeCardProps> = ({

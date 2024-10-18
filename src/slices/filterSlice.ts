@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { EmployeeRoles } from "../mockData/employes";
+import { EmployeeRolesEnum } from "../mockData/employes";
 
 export type FilterState = {
   name: string;
-  role: EmployeeRoles;
+  role: EmployeeRolesEnum;
   archiveStatus: boolean;
 };
 
@@ -12,7 +12,7 @@ export type FilterStatus = FilterState["archiveStatus"];
 
 const initialState: FilterState = {
   name: "",
-  role: EmployeeRoles.NO_ROLE,
+  role: EmployeeRolesEnum.NO_ROLE,
   archiveStatus: false,
 };
 
@@ -28,7 +28,7 @@ const filterSlice = createSlice({
       console.log(typeof action.payload);
       state.archiveStatus = action.payload;
     },
-    changeRole: (state, action: PayloadAction<EmployeeRoles>) => {
+    changeRole: (state, action: PayloadAction<EmployeeRolesEnum>) => {
       console.log(action.payload);
       state.role = action.payload;
     },
